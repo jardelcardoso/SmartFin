@@ -1,0 +1,29 @@
+<div class="modal fade" [id]='id' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Operação</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="example-container" [formGroup]="options" [style.fontSize.px]="getFontSize()">
+                    <mat-form-field [color]="options.value.color">
+                      <mat-select placeholder="Color" formControlName="color">
+                        <mat-option value="primary">Primary</mat-option>
+                        <mat-option value="accent">Accent</mat-option>
+                        <mat-option value="warn">Warn</mat-option>
+                      </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field [color]="options.value.color">
+                      <input matInput type="number" placeholder="Font size (px)" formControlName="fontSize" min="10">
+                      <mat-error *ngIf="options.get('fontSize')?.invalid">Min size: 10px</mat-error>
+                    </mat-form-field>
+                  </form>
+            </div>
+    </div>
+  </div>
+</div>

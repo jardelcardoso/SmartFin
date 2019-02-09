@@ -1,0 +1,46 @@
+<div class="modal fade" [id]='id' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">corretora</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #corretoraForm="ngForm" name="corretoraForm" >
+  <div class="form-group">
+   <!-- <label for="nomecorretora">Nome:</label> -->
+    <input type="email" class="form-control" id="nomecorretora" name="nomecorretora" [(ngModel)]="corretora.NOME" aria-describedby="nomeHelp" maxlength="20" placeholder="Nome" required>
+    <small id="nomeHelp" class="form-text text-muted">Informe o nome da corretora, até 20 caracteres!</small>
+  </div>
+  <div class="form-group">
+   <!--  <label for="descricaocorretora">Descrição:</label> -->
+    <input type="email" class="form-control" id="descricaocorretora" name="descricaocorretora" [(ngModel)]="corretora.DESCRICAO" aria-describedby="descricaoHelp"  maxlength="100" placeholder="Descrição" required>
+    <small id="descricaoHelp" class="form-text text-muted">Informe a descrição da corretora, até 100 caracteres!</small>
+  </div>
+  <div class="form-group">
+   <!--  <label for="cnpjCorreetora">Descrição:</label> -->
+    <input type="email" class="form-control" id="cnpjCorreetora" name="cnpjCorreetora" [(ngModel)]="corretora.CNPJ" aria-describedby="descricaoHelp"  maxlength="100" placeholder="Descrição" required>
+    <small id="descricaoHelp" class="form-text text-muted">Informe o CNPJ da corretora, apenas números!</small>
+  </div>
+  <div class="form-group form-check form-check-inline">
+	    <input type="checkbox" class="form-check-input" id="carteriaAtiva" name="carteriaAtiva" [(ngModel)]="corretora.IND_ATIVO" [checked]="corretora.IND_ATIVA == 1">
+	    <label class="form-check-label" for="carteriaAtiva">Ativa</label>
+	 </div>
+    
+ 
+ 
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" 
+        [disabled]="!corretoraForm.form.valid"
+           (click)="salvar()"
+
+        > Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

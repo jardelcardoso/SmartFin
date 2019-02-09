@@ -1,0 +1,1 @@
+export {RegistroComponent} from './registro.component';

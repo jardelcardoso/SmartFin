@@ -1,0 +1,76 @@
+
+<div class='card text-center'>
+   
+        <nav class="navbar sticky-top  navbar-light" > <!--class=" fixed-top"> -->
+              <a class="navbar-brand" [routerLink]="['/home']"><img  src="../../assets/carteira.png" alt="" width="50" height="40"></a>
+
+
+              Corretoras
+            <button class="btn btn-outline-light my-2 my-sm-0 " type="button" (click)="incluir(null)"
+                    data-target="#cadCorretoraModal" 
+                    data-toggle="modal" 
+            >
+             <img  src="../../assets/adicionar-32.png" alt="Incluir nova Corretora" >  
+            </button>
+            
+            
+
+        </nav>
+   
+    <div class="card-body"> 
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">CNPJ</th>
+              <th scope="col">Ativa</th>
+               <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let corretora of corretoras">
+              <th scope="row">{{corretora.NOME}}</th>
+              <td>{{corretora.DESCRICAO}}</td>
+              <td>{{corretora.CNPJ}}</td>
+              <td>{{corretora.IND_ATIVO ==1 ? 'Sim' :'Não'}}</td>
+                <td>
+                
+               <!-- <button type="button" class="btn-outline-light rounded-circle">
+                    <img  src="../../assets/lápis-24.png" alt="Excluir Corretora" >  
+                    button/button> -->
+                    <a 
+                     data-target="#cadCorretoraModal" 
+                       data-toggle="modal" 
+                     (click)="incluir(corretora)"  class="badge badge-light rounded-circle"><img  src="../../assets/editar-16.png"  ></a>
+                    <a  
+                       data-target="#confirmaExclusaoCorretora" 
+                       data-toggle="modal" 
+                       (click)="preparaExcluir(corretora)"
+                       class="badge badge-light rounded-circle"><img  src="../../assets/excluir-16.png"  >
+                    </a>
+                    </td>
+            </tr>
+
+            
+          </tbody>
+        </table>
+    </div>
+    
+</div>
+
+
+<app-ask-modal
+[id]="'confirmaExclusaoCorretora'" 
+[mensagemTitulo] ="'Exclusão de Corretora'"
+[objMenssagem]="objMensagemCorretora"
+(onConfirm)="excluir(corretoraSelecionada)">
+</app-ask-modal>
+
+
+<app-corretora-cadastro
+  [id]="'cadCorretoraModal'" 
+  [corretora]="corretoraSelecionada"
+  (onConfirm)="carregarCorretoras()"
+ >
+</app-corretora-cadastro>

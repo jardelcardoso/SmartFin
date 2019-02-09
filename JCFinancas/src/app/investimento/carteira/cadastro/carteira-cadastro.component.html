@@ -1,0 +1,45 @@
+<div class="modal fade" [id]='id' tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Carteira</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #carteiraForm="ngForm" name="carteiraForm" >
+  <div class="form-group">
+   <!-- <label for="nomeCarteira">Nome:</label> -->
+    <input type="email" class="form-control" id="nomeCarteira" name="nomeCarteira" [(ngModel)]="carteira.NOME" aria-describedby="nomeHelp" maxlength="20" placeholder="Nome" required>
+    <small id="nomeHelp" class="form-text text-muted">Informe o nome da carteira, até 20 caracteres!</small>
+  </div>
+  <div class="form-group">
+   <!--  <label for="descricaoCarteira">Descrição:</label> -->
+    <input type="email" class="form-control" id="descricaoCarteira" name="descricaoCarteira" [(ngModel)]="carteira.DESCRICAO" aria-describedby="descricaoHelp"  maxlength="100" placeholder="Descrição" required>
+    <small id="descricaoHelp" class="form-text text-muted">Informe a descrição da carteira, até 100 caracteres!</small>
+  </div>
+  <div class="form-group form-check form-check-inline">
+	    <input type="checkbox" class="form-check-input" id="carteriaAtiva" name="carteriaAtiva" [(ngModel)]="carteira.IND_ATIVA" [checked]="carteira.IND_ATIVA == 1">
+	    <label class="form-check-label" for="carteriaAtiva">Ativa</label>
+	 </div>
+    <div class="form-group form-check form-check-inline">
+    	<input type="checkbox" class="form-check-input" id="carteriaPadrao" name="carteriaPadrao" [(ngModel)]="carteira.IND_PADRAO" 
+      [checked]=false [value]=1>
+    	<label class="form-check-label" for="carteriaPadrao">Padrão</label>
+    </div>
+ 
+ 
+</form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" 
+        [disabled]="!carteiraForm.form.valid"
+           (click)="salvar()"
+
+        > Salvar</button>
+      </div>
+    </div>
+  </div>
+</div>

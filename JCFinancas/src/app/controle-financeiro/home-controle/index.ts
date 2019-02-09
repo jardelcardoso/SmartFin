@@ -1,0 +1,1 @@
+export {HomeControleComponent} from './home-controle.component';

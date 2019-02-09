@@ -1,0 +1,97 @@
+<div class='card text-center'>
+        <nav class="navbar sticky-top  navbar-light" > <!--class=" fixed-top"> -->
+          <form #filterForm="ngForm">
+            <div class="row">
+                  <div class="col-sm-5">
+                      <div class="input-group input-group-sm mb-1">
+                          <div  class="input-group-prepend">
+                            <span   class="input-group-text" id="inputGroup-sizing-default" >Posição em:</span>
+                          </div>
+                              <select class="form-control" aria-label="Default" name="fnMes" [(ngModel)]="filter.month" aria-describedby="inputGroup-sizing-default">
+                                <option *ngFor="let mes of meses" [value]="mes.codigo">{{mes.mes}}</option>
+                              </select>
+                              <select class="form-control" aria-label="Default" name="fnAno" [(ngModel)]="filter.year" aria-describedby="inputGroup-sizing-default">
+                                  <option *ngFor="let year of years" [value]="year.year">{{year.year}}</option>
+                                </select>
+                        </div>
+                  </div>
+              <div class="col-sm-4">
+                <div class="input-group input-group-sm mb-1">
+                  <div  class="input-group-prepend">
+                    <span   class="input-group-text" id="inputGroup-sizing-default" >Carteira</span>
+                  </div>
+                      <select class="form-control" aria-label="Default" name="fnCarteira" [(ngModel)]="filter.carteira" aria-describedby="inputGroup-sizing-default">
+                        <option *ngFor="let car of carteiras" [value]="car.NRO_CARTEIRA">{{car.NOME}}</option>
+                      </select>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="row">
+                    <div class="col-sm-6">
+                      <button class="btn btn-primary btn-sm"
+                              type="button"
+                              (click)="pesquisar()">Pesquisar
+                      </button>
+                    </div>
+
+                    <div class="col-sm-6">
+                      <button class="btn btn-primary btn-sm"
+                               type="button"
+                               data-target="#cadOperacaoModal"
+                               data-toggle="modal"
+                               (click)="cadastrarOperacao()">Cadastrar
+                      </button>
+                    </div>
+                  </div>
+              </div>
+
+            </div>
+          </form>
+          </nav>
+
+          <div>
+            <mat-accordion>
+                <mat-expansion-panel *ngFor="let tipo of tiposProdutos"  >
+
+                  <mat-expansion-panel-header *ngIf="tipo.dados && tipo.dados.length > 0">
+                      <mat-panel-title>{{tipo.NOME}}</mat-panel-title>
+                      <span class="badge badge-primary badge-pill">{{tipo.dados.length}}</span>
+                  </mat-expansion-panel-header>
+
+                      <table class="table table-striped table-hover table-responsive"  *ngIf="tipo.dados && tipo.dados.length > 0">
+                        <thead>
+                          <th>Papel</th>
+                          <th>Quantidade</th>
+                          <th>Custo Medio <span class="badge badge-primary badge-pill"
+                                                 title="Custo de medido de todas as operações">?
+                                          </span>
+                          </th>
+                          <th>Custo Total</th>
+                          <th>Valor Atual</th>
+                          <th>Valor Total</th>
+                          <th>Valorização</th>
+                          <th>% Carteira</th>
+
+                        </thead>
+                        <tr *ngFor="let prod of tipo.dados">
+                          <td>{{prod.NOME_PRODUTO}}</td>
+                          <td>{{prod.QUANTIDADE}}</td>
+                          <td>{{prod.CUSTO_MEDIO | number:'3.2-2':'pt-BR'}}</td>
+                          <td>{{prod.CUSTO_TOTAL | number:'3.2-2':'pt-BR'}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>{{prod.PERC_CARTEIRA | number:'3.2-2':'pt-BR'}}</td>
+                        </tr>
+                      </table>
+                </mat-expansion-panel>
+            </mat-accordion>
+          </div>
+</div>
+
+<app-operacoes-cadastro
+  [id]="'cadOperacaoModal'"
+  [operacao]="operacaoSelecionada"
+  (onConfirm)="carregarCorretoras()"
+ >
+</app-operacoes-cadastro>

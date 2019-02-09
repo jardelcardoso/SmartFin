@@ -1,0 +1,106 @@
+<div class='card text-center'>
+        <nav class="navbar sticky-top  navbar-light" > <!--class=" fixed-top"> -->
+          <form #filterForm="ngForm">
+            <div class="row">
+                  <div class="col-sm-6">
+                      <div class="input-group input-group-sm mb-1">
+                          <div  class="input-group-prepend">
+                            <span   class="input-group-text" id="inputGroup-sizing-default" >Posição em:</span>
+                          </div>
+                              <select class="form-control" aria-label="Default" name="fnMes" [(ngModel)]="filter.month" aria-describedby="inputGroup-sizing-default">
+                                <option *ngFor="let mes of meses" [value]="mes.codigo">{{mes.mes}}</option>
+                              </select>
+                              <select class="form-control" aria-label="Default" name="fnAno" [(ngModel)]="filter.year" aria-describedby="inputGroup-sizing-default">
+                                  <option *ngFor="let year of years" [value]="year.year">{{year.year}}</option>
+                                </select>
+                        </div>
+                  </div>
+              <div class="col-sm-5">
+                <div class="input-group input-group-sm mb-1">
+                  <div  class="input-group-prepend">
+                    <span   class="input-group-text" id="inputGroup-sizing-default" >Carteira</span>
+                  </div>
+                      <select class="form-control" aria-label="Default" name="fnCarteira" [(ngModel)]="filter.carteira" aria-describedby="inputGroup-sizing-default">
+                        <option *ngFor="let car of carteiras" [value]="car.NRO_CARTEIRA">{{car.NOME}}</option>
+                      </select>
+                </div>
+              </div>
+              <div class="col-sm-1">
+                  <div class="input-group input-group-sm mb-1">
+                    <button class="btn btn-primary btn-sm"
+                             type="button"
+                             (click)="pesquisar()">Pesquisar
+                    </button>
+                  </div>
+              </div>
+            </div>
+          </form>
+          </nav>
+
+          <div>
+              <ul class="list-group-sm list-group-flush">
+                <ng-container *ngFor="let tipo of tiposProdutos" >
+                  <li class="list-group-item"  *ngIf="tipo.dados && tipo.dados.length > 0" >{{tipo.NOME}}
+                    <span class="badge badge-primary badge-pill">{{tipo.dados.length}}</span>
+                  </li>
+
+                      <table class="table table-striped table-hover table-responsive"  *ngIf="tipo.dados && tipo.dados.length > 0">
+                        <thead>
+                          <th>Papel</th>
+                          <th>Quantidade</th>
+                          <th>Custo Medio <span class="badge badge-primary badge-pill"
+                                                 title="Custo de medido de todas as operações">?
+                                          </span>
+                          </th>
+                          <th>Custo Total</th>
+                          <th>Valor Atual</th>
+                          <th>Valor Total</th>
+                          <th>Valorização</th>
+                          <th>% Carteira</th>
+
+                        </thead>
+                        <tr *ngFor="let prod of tipo.dados">
+                          <td>{{prod.NOME_PRODUTO}}</td>
+                          <td>{{prod.QUANTIDADE}}</td>
+                          <td>{{prod.CUSTO_MEDIO | number:'3.2-2':'pt-BR'}}</td>
+                          <td>{{prod.CUSTO_TOTAL | number:'3.2-2':'pt-BR'}}</td>
+                          <td></td>
+                          <td></td>
+                          <td></td>
+                          <td>{{prod.PERC_CARTEIRA | number:'3.2-2':'pt-BR'}}</td>
+
+
+                        </tr>
+                      </table>
+                  </ng-container>
+              </ul>
+          </div>
+</div>
+
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+
+      <mat-panel-description>
+        Type your name and age
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+
+
+
+
+  </mat-expansion-panel>
+  <mat-expansion-panel (opened)="panelOpenState = true"
+                       (closed)="panelOpenState = false">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        Self aware panel
+      </mat-panel-title>
+      <mat-panel-description>
+        Currently I am {{panelOpenState ? 'open' : 'closed'}}
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <p>I'm visible because I am open</p>
+  </mat-expansion-panel>
+</mat-accordion>
+

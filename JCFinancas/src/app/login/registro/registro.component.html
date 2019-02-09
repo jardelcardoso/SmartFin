@@ -1,0 +1,62 @@
+<div class="card form-usuario text-center">
+        <div class="alert alert-danger" 
+	       role="alert"
+	       *ngIf="temErro">
+            {{msgErro}}
+        </div>
+    <div class="card-header text-center">
+        <img  src="../../assets/logo.png" alt="" width="134" height="80">
+    </div>
+    
+<form #registroForm="ngForm" >
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom01"  class="sr-only">Nome</label>
+      <input type="text" class="form-control" id="validationCustom01" placeholder="Nome" name="validationCustom01" [(ngModel)]="userRegistro.nome"  required autofocus>
+
+    </div>
+
+    <div class="col-md-6 mb-3">
+      <label for="validationCustomUsername" class="sr-only">Email</label>
+      <div class="input-group">
+        <div class="input-group-prepend">
+          <span class="input-group-text" id="inputGroupPrepend">@</span>
+        </div>
+        <input type="text" class="form-control" id="validationCustomUsername" name="validationCustomUsername" placeholder="E-mail" aria-describedby="inputGroupPrepend" [(ngModel)]="userRegistro.email" required>
+        <div class="invalid-feedback">
+          Informe um email válido.
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom03"  class="sr-only">Senha</label>
+      <input type="password" class="form-control" id="validationCustom03" name="validationCustom03" placeholder="Senha" [(ngModel)]="userRegistro.pass" required>
+      <div class="invalid-feedback">
+        Please provide a valid city.
+      </div>
+    </div>
+    <div class="col-md-6 mb-3">
+      <label for="validationCustom04"  class="sr-only">Confirmar Senha</label>
+      <input type="password" class="form-control" id="validationCustom04" name="validationCustom04" placeholder="Confirmar Senha" 
+             [(ngModel)]="confirmPass" required>
+   
+    </div>
+
+  </div>
+    
+    
+ <div class="form-row">
+    <div class="row-md-6 mb-3">
+        <a [routerLink]="['/']" class="btn btn-primary btn-sm">Voltar</a>
+    </div>
+    <div class="row-md-6 mb-3">
+        <button class="btn btn-primary btn-sm" type="submit" (click)="salvarUsuario()">Salvar</button>
+    </div>
+</div>
+    
+  
+</form>
+</div>
+

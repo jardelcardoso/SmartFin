@@ -1,0 +1,23 @@
+<div class="card form-signin text-center"> 
+    <div class="alert alert-danger" 
+	       role="alert"
+	       *ngIf="possuiErro">
+            {{msgErro}}
+    </div>
+<form #loginForm="ngForm" >
+      <img class="mb-4" src="../../assets/logo.png" alt="" width="134" height="80">
+      <label for="inputEmail" class="sr-only">Email</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email" [(ngModel)]="user.email" name="email" required autofocus>
+      <label for="inputPassword" class="sr-only">Password</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Password" [(ngModel)]="user.pass" name="pass" required>
+      <div class="checkbox mb-3">
+        <label>
+          <input type="checkbox" [(ngModel)]="lembrarUserName" name="lembrarUserName"> Lembrar Usuário
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" (click)="logar()" type="button">Logar</button>
+    <a href="/registro" class="badge badge-primary">Novo Usuário</a>
+      <p class="mt-5 mb-3 text-muted">&copy; 2017-2018</p>
+</form>
+
+</div>

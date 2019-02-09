@@ -1,0 +1,77 @@
+
+<div class='card text-center'>
+   
+        <nav class="navbar sticky-top  navbar-light" > <!--class=" fixed-top"> -->
+              <a class="navbar-brand" [routerLink]="['/home']"><img  src="../../assets/carteira.png" alt="" width="50" height="40"></a>
+
+
+              Carteiras
+            <button class="btn btn-outline-light my-2 my-sm-0 " type="button" (click)="incluir(null)"
+                    data-target="#cadCarteiraModal" 
+                    data-toggle="modal" 
+            >
+             <img  src="../../assets/adicionar-32.png" alt="Incluir nova Carteira" >  
+            </button>
+            
+            
+
+        </nav>
+   
+    <div class="card-body"> 
+        <table class="table table-sm table-hover">
+          <thead>
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">Descrição</th>
+              <th scope="col">Padrão</th>
+              <th scope="col">Ativa</th>
+               <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let carteira of carteiras">
+              <th scope="row">{{carteira.NOME}}</th>
+              <td>{{carteira.DESCRICAO}}</td>
+              <td>{{carteira.IND_PADRAO == 1 ?'Sim':'Não'}}</td>
+              <td>{{carteira.IND_ATIVA == 1 ?'Sim':'Não'}}</td>
+                <td>
+                
+               <!-- <button type="button" class="btn-outline-light rounded-circle">
+                    <img  src="../../assets/lápis-24.png" alt="Excluir Carteira" >  
+                    button/button> -->
+                    <a 
+                     data-target="#cadCarteiraModal" 
+                       data-toggle="modal" 
+                     (click)="incluir(carteira)"  class="badge badge-light rounded-circle"><img  src="../../assets/editar-16.png"  ></a>
+                    <a  
+                       data-target="#confirmaExclusao" 
+                       data-toggle="modal" 
+                       (click)="preparaExcluir(carteira)"
+                       class="badge badge-light rounded-circle"><img  src="../../assets/excluir-16.png"  >
+                    </a>
+                    </td>
+            </tr>
+
+            
+          </tbody>
+        </table>
+    </div>
+    
+</div>
+
+
+<app-ask-modal
+[id]="'confirmaExclusao'" 
+[mensagemTitulo] ="'Exclusão de Carteira'"
+[objMenssagem]="objMensagemCarteira"
+(onConfirm)="excluir(carteiraSelecionada)">
+</app-ask-modal>
+
+
+<app-carteira-casdastro
+  [id]="'cadCarteiraModal'" 
+ [carteira]="carteiraSelecionada"
+ (onConfirm)="carregarCarteiras()">
+  >
+  >
+</app-carteira-casdastro>
