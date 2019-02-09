@@ -5,11 +5,14 @@
 #!lib.a
 # apenas ignore o arquivo TODO na raiz, não o subdiretório TODO
 #/TODO
-# ignore todos os arquivos no diretório build/
+# ignore todos os arquivos no diretorios abaixo/
 SmartFinFront_old/
 SmartFinFront/
 SmartFinBack/
-*.sql
+db_script/
 sfLogin/
+
+*.sql
+
 # ignore doc/notes.txt mas, não ignore doc/server/arch.txt
 #doc/*.txt
