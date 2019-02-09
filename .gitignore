@@ -9,5 +9,7 @@
 SmartFinFront_old/
 SmartFinFront/
 SmartFinBack/
+*.sql
+sfLogin/
 # ignore doc/notes.txt mas, não ignore doc/server/arch.txt
 #doc/*.txt
